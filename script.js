@@ -1,34 +1,89 @@
-// JavaScript code for spider's random movement
-const spider = document.querySelector('.spider');
+let missCount = 0;
+let score = 0;
 
-function moveSpiderRandomly() {
-    const maxX = window.innerWidth - spider.clientWidth;
-    const maxY = window.innerHeight - spider.clientHeight;
-    
+function createSpider() {
+    const newSpider = document.createElement('div');
+    newSpider.classList.add('spider');
+
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 150;
+
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
-    
-    spider.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+    newSpider.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+    newSpider.addEventListener('click', (event) => {
+        event.stopPropagation(); // Stop the event from propagating to the document click event
+        newSpider.remove();
+        updateScore();
+    });
+
+    spidersContainer.appendChild(newSpider);
 }
 
-// Call the moveSpiderRandomly function to start the spider's movement
-moveSpiderRandomly();
+document.addEventListener('click', () => {
+    // Missed the spider
+    updateMiss();
+});
 
-// Set an interval to make the spider move randomly at regular intervals (e.g., every 5 seconds)
-setInterval(moveSpiderRandomly, 5000);
+function updateScore() {
+    score += 1;
+    const scoreElement = document.getElementById('score');
+    scoreElement.textContent = score;
 
-const cursorRounded = document.querySelector('.cursor_hammer_0');
-const cursorPointed = document.querySelector('.cursor_hammer_45');
-
-
-const moveCursor = (e)=> {
-  const mouseY = e.clientY;
-  const mouseX = e.clientX;
-   
-  cursorRounded.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-  
-  cursorPointed.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
- 
+    if (score === 20) {
+        showResultDialog('You Won!');
+    }
 }
 
-window.addEventListener('mousemove', moveCursor)
+function updateMiss() {
+    missCount += 1;
+    const missElement = document.getElementById('misses');
+    missElement.textContent = missCount;
+
+    if (missCount === 5) {
+        showResultDialog('You Lost!');
+    }
+}
+
+function showResultDialog(message) {
+    alert(message);
+    resetGame();
+}
+
+function resetGame() {
+    missCount = 0;
+    score = 0;
+    const scoreElement = document.getElementById('score');
+    scoreElement.textContent = '0';
+
+    const missElement = document.getElementById('misses');
+    missElement.textContent = '0';
+
+    spidersContainer.innerHTML = '';
+
+    // Start creating spiders again
+    createSpider();
+}
+
+const spidersContainer = document.querySelector('.spiders-container');
+
+createSpider();
+
+setInterval(createSpider, 5000);
+
+const cursor = document.querySelector('.cursor');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = `${e.clientX - cursor.clientWidth / 2}px`;
+    cursor.style.top = `${e.clientY - cursor.clientHeight / 2}px`;
+});
+
+document.addEventListener('mousedown', () => {
+    cursor.style.backgroundImage = 'url("hammer_45.png")';
+});
+
+document.addEventListener('mouseup', () => {
+    cursor.style.backgroundImage = 'url("hammer_0.png")';
+});
