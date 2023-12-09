@@ -130,4 +130,24 @@ h1 {
     cursor: url('hammer_45.png'), auto;
 }
 
+.cursor {
+    width: 250px; /* Increased the size of the cursor (hammer) */
+    height: 250px; /* Increased the size of the cursor (hammer) */
+    position: fixed;
+    background-image: url('hammer_0.png');
+    background-size: cover;
+    pointer-events: none;
+}
 
+.spiritual {
+    cursor: none;
+}
+
+/* Adjusted the spider size */
+.spider {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    background-image: url('spider.gif');
+    background-size: cover;
+}
