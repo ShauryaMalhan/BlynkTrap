@@ -1,6 +1,10 @@
 let missCount = 0;
 let score = 0;
 
+let flag = false;
+
+
+
 function createSpider() {
     const newSpider = document.createElement('div');
     newSpider.classList.add('spider');
