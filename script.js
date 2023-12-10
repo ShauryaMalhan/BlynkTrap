@@ -1,10 +1,13 @@
 let missCount = 0;
 let score = 0;
 
+<<<<<<< HEAD
 let flag = false;
 
 
 
+=======
+>>>>>>> 185f8de6a9da667a8c52a79c448333ed98d40b77
 function createSpider() {
     const newSpider = document.createElement('div');
     newSpider.classList.add('spider');
@@ -90,4 +93,8 @@ document.addEventListener('mousedown', () => {
 
 document.addEventListener('mouseup', () => {
     cursor.style.backgroundImage = 'url("hammer_0.png")';
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 185f8de6a9da667a8c52a79c448333ed98d40b77

@@ -130,7 +130,16 @@ h1 {
     cursor: url('hammer_45.png'), auto;
 }
 
+.cursor {
+    width: 250px; /* Increased the size of the cursor (hammer) */
+    height: 250px; /* Increased the size of the cursor (hammer) */
+    position: fixed;
+    background-image: url('hammer_0.png');
+    background-size: cover;
+    pointer-events: none;
+}
 
+<<<<<<< HEAD
 /* Your existing styles here */
 
 .cursor {
@@ -142,6 +151,8 @@ h1 {
     pointer-events: none;
 }
 
+=======
+>>>>>>> 185f8de6a9da667a8c52a79c448333ed98d40b77
 .spiritual {
     cursor: none;
 }
@@ -154,4 +165,7 @@ h1 {
     background-image: url('spider.gif');
     background-size: cover;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 185f8de6a9da667a8c52a79c448333ed98d40b77
